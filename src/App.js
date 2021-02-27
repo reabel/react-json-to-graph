@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import { LineChart, data, XAxis, Tooltip, CartesianGrid, Line } from "recharts";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +81,30 @@ function App() {
           </Grid>
           <Grid item xs={8}>
             <Paper className={classes.paper}>
-              <div className="graph">Something here</div>
+              <div className="graph">
+                <LineChart
+                  width={400}
+                  height={400}
+                  data={data}
+                  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+                >
+                  <XAxis dataKey="name" />
+                  <Tooltip />
+                  <CartesianGrid stroke="#f5f5f5" />
+                  <Line
+                    type="monotone"
+                    dataKey="uv"
+                    stroke="#ff7300"
+                    yAxisId={0}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="pv"
+                    stroke="#387908"
+                    yAxisId={1}
+                  />
+                </LineChart>
+              </div>
             </Paper>
           </Grid>
         </Grid>
