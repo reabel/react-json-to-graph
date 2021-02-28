@@ -10,7 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
 import JsonEditor from "./components/JsonEditor";
-import GraphDisplay from "./components/GraphDisplay";
+//import GraphDisplay from "./components/GraphDisplay";
+import CanvasDisplay from "./components/CanvasDisplay";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,8 +78,14 @@ function App() {
           </Toolbar>
         </AppBar>
         <Grid container spacing={3}>
-          <JsonEditor setJsonData jsonData classes defaultJSON />
-          <GraphDisplay classes />
+          <JsonEditor
+            setJsonData={setJsonData}
+            data={jsonData}
+            classes={classes}
+            defaultJSON={defaultJSON}
+          />
+          {/* <GraphDisplay classes={classes} /> */}
+          <CanvasDisplay classes={classes} data={jsonData} />
         </Grid>
       </div>
     </div>

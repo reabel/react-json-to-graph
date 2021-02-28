@@ -3,7 +3,7 @@ import { LineChart, XAxis, Tooltip, CartesianGrid, Line } from "recharts";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-const data = [
+const oldData = [
   {
     name: "Page A",
     uv: 4000,
@@ -48,7 +48,7 @@ const data = [
   },
 ];
 
-const JsonEditor = ({ classes, setJsonData, jsonData, defaultJSON }) => {
+const GraphDisplay = ({ classes, data, defaultJSON }) => {
   return (
     <Grid item xs={6}>
       <Paper className={classes.paper}>
@@ -71,4 +71,4 @@ const JsonEditor = ({ classes, setJsonData, jsonData, defaultJSON }) => {
   );
 };
 
-export default JsonEditor;
+export default GraphDisplay;

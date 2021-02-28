@@ -5,7 +5,8 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-const JsonEditor = ({ setJsonData, jsonData, defaultJSON, classes }) => {
+const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
+  if (!data) return <div>No data...</div>;
   return (
     <Grid item xs={6}>
       <Paper className={classes.paper}>
@@ -23,7 +24,7 @@ const JsonEditor = ({ setJsonData, jsonData, defaultJSON, classes }) => {
                   setJsonData(JSON.parse(e.target.value));
                 }}
                 //defaultValue={JSON.stringify(jsonData, null, 4)}
-                value={JSON.stringify(jsonData, null, 4)}
+                value={JSON.stringify(data, null, 4)}
               />
               ;
             </div>
@@ -47,7 +48,7 @@ const JsonEditor = ({ setJsonData, jsonData, defaultJSON, classes }) => {
               color="primary"
               onClick={() => {
                 //re-render based off of value of state
-                console.log("Current State:", jsonData);
+                console.log("Current State:", data);
               }}
             >
               Submit JSON
