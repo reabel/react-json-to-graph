@@ -3,18 +3,22 @@
 - [x] Init Documentation
 - [x] Add Material UI
 - [ ] Initial Render of Graph (to ensure library works as expected)
-  - Graph Renders but not yet accepting proper input
+  - [x] Graph Renders but not yet accepting proper input
+  - [ ] Render based off default values
+  - [ ] Redner based off of updated values
 - [x] Add Text box to handle input of JSON
 - [ ] Error Handling
   - materialUI allows for error props to be passed to inputs
+  - [ ] to be determined on button press
 - [ ] build documentation
+  - [ ]include in-code as well (for future reference)
 
 # Additional Items to be added should the be time
 
 - [ ] Dark Mode switch
   - https://material-ui.com/components/switches/
 - [ ] Testing
-- [ ] Custom Graph UI
+- [ ] Custom Graph UI (using canvas)
 
 # Current Issues
 
