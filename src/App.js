@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import ReactDOM from "react-dom";
-import Button from "@material-ui/core/Button";
+
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { LineChart, XAxis, Tooltip, CartesianGrid, Line } from "recharts";
+
+import Grid from "@material-ui/core/Grid";
+
+import JsonEditor from "./components/JsonEditor";
+import GraphDisplay from "./components/GraphDisplay";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,54 +58,14 @@ const defaultJSON = {
     },
   ],
 };
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
 
 function App() {
   const classes = useStyles();
   const [jsonData, setJsonData] = useState(defaultJSON);
+  useEffect(() => {
+    setJsonData(defaultJSON);
+  }, []);
+  //TODO: Break into separate components
   return (
     <div className="App">
       <div className={classes.root}>
@@ -115,82 +77,8 @@ function App() {
           </Toolbar>
         </AppBar>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <div className="jsonInput">
-                    <TextField
-                      id="outlined-multiline-static"
-                      label="JSON Input"
-                      multiline
-                      fullWidth
-                      variant="outlined"
-                      onChange={(e) => {
-                        //console.log(e.target.value);
-                        setJsonData(JSON.parse(e.target.value));
-                      }}
-                      //defaultValue={JSON.stringify(jsonData, null, 4)}
-                      value={JSON.stringify(jsonData, null, 4)}
-                    />
-                  </div>
-                </Grid>
-                <Grid item xs={4} />
-                <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      //re-render based off of value of state
-                      setJsonData(defaultJSON);
-                    }}
-                  >
-                    Reset JSON
-                  </Button>
-                </Grid>
-                <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      //re-render based off of value of state
-                      console.log("Current State:", jsonData);
-                    }}
-                  >
-                    Submit JSON
-                  </Button>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>
-              <div className="graph">
-                <LineChart
-                  width={400}
-                  height={400}
-                  data={data}
-                  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-                >
-                  <XAxis dataKey="name" />
-                  <Tooltip />
-                  <CartesianGrid stroke="#f5f5f5" />
-                  <Line
-                    type="monotone"
-                    dataKey="uv"
-                    stroke="#ff7300"
-                    yAxisId={0}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="pv"
-                    stroke="#387908"
-                    yAxisId={1}
-                  />
-                </LineChart>
-              </div>
-            </Paper>
-          </Grid>
+          <JsonEditor setJsonData jsonData classes defaultJSON />
+          <GraphDisplay classes />
         </Grid>
       </div>
     </div>
