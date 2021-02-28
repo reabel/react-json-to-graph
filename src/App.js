@@ -124,6 +124,7 @@ function App() {
                       id="outlined-multiline-static"
                       label="JSON Input"
                       multiline
+                      fullWidth
                       variant="outlined"
                       onChange={(e) => {
                         //console.log(e.target.value);
