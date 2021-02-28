@@ -1,9 +1,10 @@
 # List of items needed before submitted
 
 - [x] Init Documentation
-- [ ] Add Material UI
+- [x] Add Material UI
 - [ ] Initial Render of Graph (to ensure library works as expected)
-- [ ] Add Text box to handle input of JSON
+  - Graph Renders but not yet accepting proper input
+- [x] Add Text box to handle input of JSON
 - [ ] Error Handling
   - materialUI allows for error props to be passed to inputs
 - [ ] build documentation
@@ -22,3 +23,4 @@
   - Switching to an older version seems to resolve the issue for now (used **14.13.1**)
   - Also re-installing **node_modules** from scratch worked as well
   - Will aim to test for [Fermium](https://nodejs.org/download/release/latest-fermium/) going forward
+  - May just have had an issue with package-lock

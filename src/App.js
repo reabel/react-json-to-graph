@@ -1,11 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
+//import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import { LineChart, data, XAxis, Tooltip, CartesianGrid, Line } from "recharts";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { LineChart, XAxis, Tooltip, CartesianGrid, Line } from "recharts";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,33 +56,113 @@ const defaultJSON = {
     },
   ],
 };
+const data = [
+  {
+    name: "Page A",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Page B",
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Page C",
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Page D",
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "Page E",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: "Page F",
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+];
 
 function App() {
   const classes = useStyles();
+  const [jsonData, setJsonData] = useState(defaultJSON);
   return (
     <div className="App">
       <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="h6" className={classes.title}>
+              JSON to Graph
+            </Typography>
+          </Toolbar>
+        </AppBar>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <header className="App-header">Graph Generator</header>
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Paper className={classes.paper}>
-              <div className="jsonInput">
-                <TextField
-                  id="outlined-multiline-static"
-                  label="Multiline"
-                  multiline
-                  defaultValue={JSON.stringify(defaultJSON)}
-                  variant="outlined"
-                />
-              </div>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <div className="jsonInput">
+                    <TextField
+                      id="outlined-multiline-static"
+                      label="JSON Input"
+                      multiline
+                      variant="outlined"
+                      onChange={(e) => {
+                        //console.log(e.target.value);
+                        setJsonData(JSON.parse(e.target.value));
+                      }}
+                      //defaultValue={JSON.stringify(jsonData, null, 4)}
+                      value={JSON.stringify(jsonData, null, 4)}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={4} />
+                <Grid item xs={4}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      //re-render based off of value of state
+                      setJsonData(defaultJSON);
+                    }}
+                  >
+                    Reset JSON
+                  </Button>
+                </Grid>
+                <Grid item xs={4}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      //re-render based off of value of state
+                      console.log("Current State:", jsonData);
+                    }}
+                  >
+                    Submit JSON
+                  </Button>
+                </Grid>
+              </Grid>
             </Paper>
-            <Button variant="contained" color="primary">
-              Submit JSON
-            </Button>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <Paper className={classes.paper}>
               <div className="graph">
                 <LineChart
