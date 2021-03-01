@@ -4,11 +4,6 @@ import Grid from "@material-ui/core/Grid";
 
 const _ = require("lodash");
 
-// import {
-//   ErrorOutlineIcon,
-//   AdjustOutlinedIcon,
-// } from "@material-ui/icons/ErrorOutline";
-
 const CanvasDisplay = (props) => {
   const canvasRef = useRef(null);
   const [maxX, maxY] = [400, 400];
@@ -17,6 +12,8 @@ const CanvasDisplay = (props) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     //TODO: add checks either here or on data submission
+    if (!props.data) return;
+
     const vertices = props.data.vertices;
     const edges = props.data.edges;
 
