@@ -5,6 +5,10 @@ import Grid from "@material-ui/core/Grid";
 const _ = require("lodash");
 
 const CanvasDisplay = (props) => {
+  /**
+   * TODO: refactor to prevent issue where icons don't display
+   * on Initial page load
+   */
   const canvasRef = useRef(null);
   const [maxX, maxY] = [400, 400];
 
