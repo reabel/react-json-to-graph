@@ -5,8 +5,25 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
+const JsonEditor = ({
+  setRawData,
+  setJsonData,
+  data,
+  defaultJSON,
+  classes,
+}) => {
   if (!data) return <div>No data...</div>;
+
+  const updateJson = (value) => {
+    try {
+      //const parsedValue = JSON.parse(value);
+
+      setJsonData(value);
+    } catch (err) {
+      console.log("err", err);
+      return;
+    }
+  };
   return (
     <Grid item xs={6}>
       <Paper className={classes.paper}>
@@ -20,11 +37,11 @@ const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
                 fullWidth
                 variant="outlined"
                 onChange={(e) => {
-                  //console.log(e.target.value);
-                  setJsonData(JSON.parse(e.target.value));
+                  //updateJson(e.target.value);
+                  setRawData(e.target.value);
                 }}
                 //defaultValue={JSON.stringify(jsonData, null, 4)}
-                value={JSON.stringify(data, null, 4)}
+                value={data}
               />
             </div>
           </Grid>
@@ -35,7 +52,8 @@ const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
               color="primary"
               onClick={() => {
                 //re-render based off of value of state
-                setJsonData(defaultJSON);
+                //setJsonData(defaultJSON);
+                setRawData(JSON.stringify(defaultJSON, null, 4));
               }}
             >
               Reset JSON
@@ -47,6 +65,7 @@ const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
               color="primary"
               onClick={() => {
                 //re-render based off of value of state
+                setJsonData(JSON.parse(data));
                 console.log("Current State:", data);
               }}
             >

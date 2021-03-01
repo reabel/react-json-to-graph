@@ -63,6 +63,7 @@ const defaultJSON = {
 function App() {
   const classes = useStyles();
   const [jsonData, setJsonData] = useState(defaultJSON);
+  const [rawData, setRawData] = useState(JSON.stringify(defaultJSON, null, 4));
   useEffect(() => {
     setJsonData(defaultJSON);
   }, []);
@@ -79,8 +80,9 @@ function App() {
         </AppBar>
         <Grid container spacing={3}>
           <JsonEditor
+            setRawData={setRawData}
             setJsonData={setJsonData}
-            data={jsonData}
+            data={rawData}
             classes={classes}
             defaultJSON={defaultJSON}
           />
