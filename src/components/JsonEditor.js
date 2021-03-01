@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -12,15 +12,17 @@ const JsonEditor = ({
   defaultJSON,
   classes,
 }) => {
+  const [error, setError] = useState(false);
   if (!data) return <div>No data...</div>;
 
   const updateJson = (value) => {
     try {
       //const parsedValue = JSON.parse(value);
-
-      setJsonData(value);
+      setJsonData(JSON.parse(value));
+      setError(false);
     } catch (err) {
       console.log("err", err);
+      setError(err);
       return;
     }
   };
@@ -37,11 +39,11 @@ const JsonEditor = ({
                 fullWidth
                 variant="outlined"
                 onChange={(e) => {
-                  //updateJson(e.target.value);
                   setRawData(e.target.value);
                 }}
-                //defaultValue={JSON.stringify(jsonData, null, 4)}
                 value={data}
+                error={error}
+                helperText={error ? error.message : "Valid JSON"}
               />
             </div>
           </Grid>
@@ -55,6 +57,7 @@ const JsonEditor = ({
                 //setJsonData(defaultJSON);
                 setRawData(JSON.stringify(defaultJSON, null, 4));
                 setJsonData(defaultJSON);
+                setError(false);
               }}
             >
               Reset JSON
@@ -66,7 +69,8 @@ const JsonEditor = ({
               color="primary"
               onClick={() => {
                 //re-render based off of value of state
-                setJsonData(JSON.parse(data));
+                //setJsonData(JSON.parse(data));
+                updateJson(data);
               }}
             >
               Submit JSON
