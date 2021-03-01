@@ -10,7 +10,7 @@
   - [x] Customize styling based off of node type
 - [x] Add Text box to handle input of JSON
 - [x] build documentation
-  - [ ]include in-code as well (for future reference)
+  - [ ] include in-code as well (for future reference)
 
 # Additional Items to be added should there be time
 
