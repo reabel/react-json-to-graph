@@ -4,6 +4,7 @@
 - [x] Add Material UI
 - [x] Initial Render of Graph (to ensure library works as expected)
   - [x] Graph Renders but not yet accepting proper input
+- Additional Graph Requiremnts
   - [x] Render based off default values
   - [x] Render based off of updated values
   - [x] Customize styling based off of node type
@@ -19,6 +20,7 @@
 - [x] Custom Graph UI (using canvas)
   - [ ] Currently appears to be rendering lines multiple times
   - [ ] render items a bit more properly / relatively
+  - [ ] match edge rendering to match alarm when necessary
 - [ ] Error Handling
   - materialUI allows for error props to be passed to inputs
   - [ ] to be determined on button press

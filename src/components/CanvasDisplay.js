@@ -57,13 +57,9 @@ const CanvasDisplay = (props) => {
           return node.id === edge.target_id;
         });
         //if (target.type === "alarm") ctx.strokeStyle = "red";
-
         ctx.moveTo(source.xPos + 10, source.yPos - 10);
         ctx.lineTo(target.xPos + 10, target.yPos - 10);
         ctx.stroke();
-
-        ctx.strokeStyle = "black";
-
         renderLabel(ctx, [source.xPos + 40, source.yPos + 40], edge.label);
       });
     };
