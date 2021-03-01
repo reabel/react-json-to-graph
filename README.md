@@ -4,6 +4,9 @@
 
 ---
 
+> Note: if the graph's icons don't render and text appears,
+> refresh the page or select "Submit JSON"
+
 ### Run Locally:
 
 ```

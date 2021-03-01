@@ -27,17 +27,25 @@
   - [ ] refactor to not use try catch
   - [ ] Add for graph display, may need to elevate refs from text area
 - [ ] Limit props spreading amoung components
+- [ ] Resolve issue where Icons do not render initially
 
 # Current Issues
 
-- Node v15 seems to have an issue with installing certain dependencies
+- Icons rendering as text
+
+  - When first serving the page after a build, I noticed that instead of icons being rendered, text was.
+    - Refreshing the Page helped with this, I'm not sure if this is a caching issue or a problem with the generated javascript
+    - Also appears to happen from node-served content
+    - could relate with how the initial graph gets rendered as re-submitting the JSON fixes the issue
+
+- (FIXED)Node v15 seems to have an issue with installing certain dependencies
 
   - Similar to what was found here [here.](https://github.com/npm/cli/issues/2000)
   - Switching to an older version seems to resolve the issue for now (used **14.13.1**)
   - Also re-installing **node_modules** from scratch worked as well
   - Will aim to test for [Fermium](https://nodejs.org/download/release/latest-fermium/) going forward
-  - May just have had an issue with package-lock
+  - May just have had an issue with package-lock, regenerating resolved the issue.
 
-- Editing the default input only works when parsing results in valid JSON. this prevents new items from being
+- (FIXED) Editing the default input only works when parsing results in valid JSON. this prevents new items from being
   added in an incomplete state
   - has to do with how the event handling is done
