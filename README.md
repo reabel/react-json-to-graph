@@ -1,9 +1,48 @@
 # Internal Documentation
 
+## Quick start
+
+---
+
+### Run Locally:
+
+```
+# install the application for local testing
+npm install
+npm start
+```
+
+### Build Application for deployment to a webserver
+
+```
+# build a release
+npm run build
+```
+
+After this is done, files in `/build` can be pushed of to the root of a webserver and served.
+It uses `/` by default. Different references can be changed via `homepage` field in package.json
+
+You can also use the following once built to serve locally (from base project directory).
+
+```
+npm install -g serve
+serve -s build
+```
+
+---
+
 [Requirements](Requirements.md)\
 [Tasks remaining](Todo.md)
 
-# Getting Started with Create React App
+### Related Documents
+
+- Getting started with [Material UI](https://material-ui.com/getting-started/installation/)
+
+---
+
+# Create-react-app generated documentation
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -73,9 +112,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
----
-
-### Useful links
-
-- Getting started with [Material UI](https://material-ui.com/getting-started/installation/)
