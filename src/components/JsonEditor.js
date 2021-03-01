@@ -26,7 +26,6 @@ const JsonEditor = ({ setJsonData, data, defaultJSON, classes }) => {
                 //defaultValue={JSON.stringify(jsonData, null, 4)}
                 value={JSON.stringify(data, null, 4)}
               />
-              ;
             </div>
           </Grid>
           <Grid item xs={4} />
