@@ -20,40 +20,35 @@ const CanvasDisplay = (props) => {
     const vertices = props.data.vertices;
     const edges = props.data.edges;
 
-    //TODO: breakdown into separate functions
-    const draw = (ctx) => {
-      let nodePositions = [];
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      ctx.fillStyle = "#0000FF";
-      // ctx.moveTo(0, 200);
-      // ctx.lineTo(200, 100);
-      // ctx.stroke();
-      // //ctx.fillText("Alert", 200, 100);
-      ctx.font = "24px Material Icons";
-      // ctx.fillText("adjust_outlined_icon", 190, 110);
-      // ctx.moveTo(200, 100);
-      // ctx.fillText("error_outline_icon", 240, 110);
-      //ctx.drawImage();
-      //maybe loop differently, or map or something
-      console.log("length", vertices.length);
+    const nodePositions = [];
 
+    const renderVertices = (ctx) => {
       //render icons
       _.forEach(vertices, (vertex, key) => {
         //create object for various properties (ypos, icon, colour)
+        ctx.font = "24px Material Icons";
         let curType =
           vertex.type === "node"
             ? "adjust_outlined_icon"
             : "error_outline_icon";
 
         let yPos = vertex.type === "node" ? 200 : 155;
-        console.log("vertex", vertex);
-        console.log("key", key + 1);
         let relX = (key + 1) / vertices.length;
         let xPos = maxX * relX - 50;
+        if (vertex.type !== "node") {
+          ctx.fillStyle = "#FF0000";
+        }
+
         ctx.fillText(curType, xPos, yPos);
-        nodePositions.push({ id: vertex.id, xPos, yPos });
+        ctx.fillStyle = "#331133";
+        // TODO: refactor this to possible update the current vertex instead of
+        // requiring a new array
+        nodePositions.push({ id: vertex.id, xPos, yPos, type: vertex.type });
+        renderLabel(ctx, [xPos - 10, yPos + 10], vertex.label);
       });
-      //render edges
+    };
+
+    const renderEdges = (ctx) => {
       _.forEach(edges, (edge) => {
         const source = _.find(nodePositions, (node) => {
           return node.id === edge.source_id;
@@ -61,17 +56,33 @@ const CanvasDisplay = (props) => {
         const target = _.find(nodePositions, (node) => {
           return node.id === edge.target_id;
         });
+        //if (target.type === "alarm") ctx.strokeStyle = "red";
+
         ctx.moveTo(source.xPos + 10, source.yPos - 10);
         ctx.lineTo(target.xPos + 10, target.yPos - 10);
         ctx.stroke();
+
+        ctx.strokeStyle = "black";
+
+        renderLabel(ctx, [source.xPos + 40, source.yPos + 40], edge.label);
       });
     };
 
-    const render = () => {
-      console.log("drawing");
-      draw(context);
+    const renderLabel = (ctx, coord, label) => {
+      ctx.font = "10pt arial";
+      ctx.fillText(label, coord[0], coord[1]);
+      //ctx.fillText("test", 200, 200);
     };
-    render();
+
+    const draw = (ctx) => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      context.beginPath(); //resolves issue where canvas wouldn't clear
+      ctx.fillStyle = "#331133";
+
+      renderVertices(ctx);
+      renderEdges(ctx);
+    };
+    draw(context);
 
     return;
   });
@@ -85,19 +96,6 @@ const CanvasDisplay = (props) => {
       </Paper>
     </Grid>
   );
-
-  //const c = document.getElementById("canvasGraph");
-
-  //console.log("CD data", data);
-
-  // const Canvas = () => {
-  //   <canvas
-  //     id="canvasGraph"
-  //     width={maxX}
-  //     height={maxY}
-  //     style={{ border: "1px solid #000000" }}
-  //   ></canvas>;
-  // };
 };
 
 export default CanvasDisplay;

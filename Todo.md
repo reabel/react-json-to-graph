@@ -22,6 +22,7 @@
 - [ ] Error Handling
   - materialUI allows for error props to be passed to inputs
   - [ ] to be determined on button press
+- [ ] Limit props spreading amoung components
 
 # Current Issues
 

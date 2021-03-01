@@ -54,6 +54,7 @@ const JsonEditor = ({
                 //re-render based off of value of state
                 //setJsonData(defaultJSON);
                 setRawData(JSON.stringify(defaultJSON, null, 4));
+                setJsonData(defaultJSON);
               }}
             >
               Reset JSON
@@ -66,7 +67,6 @@ const JsonEditor = ({
               onClick={() => {
                 //re-render based off of value of state
                 setJsonData(JSON.parse(data));
-                console.log("Current State:", data);
               }}
             >
               Submit JSON

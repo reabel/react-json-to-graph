@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
 import JsonEditor from "./components/JsonEditor";
-//import GraphDisplay from "./components/GraphDisplay";
 import CanvasDisplay from "./components/CanvasDisplay";
 
 const useStyles = makeStyles((theme) => ({
