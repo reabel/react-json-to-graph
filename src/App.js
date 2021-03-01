@@ -16,8 +16,10 @@ import CanvasDisplay from "./components/CanvasDisplay";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "95%",
   },
   paper: {
+    margin: theme.spacing(2),
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -70,14 +72,14 @@ function App() {
   //TODO: Break into separate components
   return (
     <div className="App">
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h6" className={classes.title}>
+            JSON to Graph
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar variant="dense">
-            <Typography variant="h6" className={classes.title}>
-              JSON to Graph
-            </Typography>
-          </Toolbar>
-        </AppBar>
         <Grid container spacing={3}>
           <JsonEditor
             setRawData={setRawData}
