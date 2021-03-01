@@ -5,7 +5,8 @@
 - [ ] Initial Render of Graph (to ensure library works as expected)
   - [x] Graph Renders but not yet accepting proper input
   - [ ] Render based off default values
-  - [ ] Redner based off of updated values
+  - [ ] Render based off of updated values
+  - [ ] Customize styling based off of node type
 - [x] Add Text box to handle input of JSON
 - [ ] Error Handling
   - materialUI allows for error props to be passed to inputs
