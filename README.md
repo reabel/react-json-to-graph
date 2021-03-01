@@ -40,6 +40,8 @@ serve -s build
 ### Related Documents
 
 - Getting started with [Material UI](https://material-ui.com/getting-started/installation/)
+- Canvas Rendering on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+- Drawing Graphics on [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics)
 
 ---
 
