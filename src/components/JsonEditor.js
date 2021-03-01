@@ -13,7 +13,6 @@ const JsonEditor = ({
   classes,
 }) => {
   const [error, setError] = useState(false);
-  if (!data) return <div>No data...</div>;
 
   const updateJson = (value) => {
     try {

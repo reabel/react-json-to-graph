@@ -56,6 +56,9 @@ const CanvasDisplay = (props) => {
         const target = _.find(nodePositions, (node) => {
           return node.id === edge.target_id;
         });
+        //accounting for typos on edges
+        if (!source || !target) return;
+
         //if (target.type === "alarm") ctx.strokeStyle = "red";
         ctx.moveTo(source.xPos + 10, source.yPos - 10);
         ctx.lineTo(target.xPos + 10, target.yPos - 10);

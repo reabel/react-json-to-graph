@@ -21,9 +21,11 @@
   - [ ] Currently appears to be rendering lines multiple times
   - [ ] render items a bit more properly / relatively
   - [ ] match edge rendering to match alarm when necessary
-- [ ] Error Handling
+- [x] Error Handling
   - materialUI allows for error props to be passed to inputs
-  - [ ] to be determined on button press
+  - [x] to be determined on button press
+  - [ ] refactor to not use try catch
+  - [ ] Add for graph display, may need to elevate refs from text area
 - [ ] Limit props spreading amoung components
 
 # Current Issues
