@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 //import ReactDOM from "react-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -65,10 +65,6 @@ function App() {
   const classes = useStyles();
   const [jsonData, setJsonData] = useState(defaultJSON);
   const [rawData, setRawData] = useState(JSON.stringify(defaultJSON, null, 4));
-  useEffect(() => {
-    setJsonData(defaultJSON);
-  }, []);
-  //TODO: Break into separate components
   return (
     <div className="App">
       <AppBar position="static">
