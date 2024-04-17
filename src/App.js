@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 //import ReactDOM from "react-dom";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider, makeStyles } from "@mui/material/styles";
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 import JsonEditor from "./components/JsonEditor";
 import CanvasDisplay from "./components/CanvasDisplay";
@@ -66,6 +66,7 @@ function App() {
   const [jsonData, setJsonData] = useState(defaultJSON);
   const [rawData, setRawData] = useState(JSON.stringify(defaultJSON, null, 4));
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <AppBar position="static">
         <Toolbar variant="dense">
@@ -88,6 +89,8 @@ function App() {
         </Grid>
       </div>
     </div>
+
+    </ThemeProvider>
   );
 }
 
