@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 //import ReactDOM from "react-dom";
 
-import { ThemeProvider, makeStyles } from "@mui/material/styles";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,18 +11,23 @@ import Grid from "@mui/material/Grid";
 import JsonEditor from "./components/JsonEditor";
 import CanvasDisplay from "./components/CanvasDisplay";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: "95%",
-  },
-  paper: {
-    margin: theme.spacing(2),
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+/**
+ * use https://mui.com/system/styled/ instead of makeStyles
+ * https://mui.com/material-ui/migration/migration-v4/
+ */
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//     width: "95%",
+//   },
+//   paper: {
+//     margin: theme.spacing(2),
+//     padding: theme.spacing(2),
+//     textAlign: "center",
+//     color: theme.palette.text.secondary,
+//   },
+// }));
 
 const defaultJSON = {
   vertices: [
@@ -62,35 +66,54 @@ const defaultJSON = {
 };
 
 function App() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [jsonData, setJsonData] = useState(defaultJSON);
   const [rawData, setRawData] = useState(JSON.stringify(defaultJSON, null, 4));
+  // return (
+  //   <div className="App">
+  //     <AppBar position="static">
+  //       <Toolbar variant="dense">
+  //         <Typography variant="h6" className={classes.title}>
+  //           JSON to Graph
+  //         </Typography>
+  //       </Toolbar>
+  //     </AppBar>
+  //     <div className={classes.root}>
+  //       <Grid container spacing={3}>
+  //         <JsonEditor
+  //           setRawData={setRawData}
+  //           setJsonData={setJsonData}
+  //           data={rawData}
+  //           classes={classes}
+  //           defaultJSON={defaultJSON}
+  //         />
+  //         {/* <GraphDisplay classes={classes} /> */}
+  //         <CanvasDisplay classes={classes} data={jsonData} />
+  //       </Grid>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <ThemeProvider theme={theme}>
     <div className="App">
       <AppBar position="static">
         <Toolbar variant="dense">
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6">
             JSON to Graph
           </Typography>
         </Toolbar>
       </AppBar>
-      <div className={classes.root}>
+      <div>
         <Grid container spacing={3}>
           <JsonEditor
             setRawData={setRawData}
             setJsonData={setJsonData}
             data={rawData}
-            classes={classes}
             defaultJSON={defaultJSON}
           />
-          {/* <GraphDisplay classes={classes} /> */}
-          <CanvasDisplay classes={classes} data={jsonData} />
+          <CanvasDisplay  data={jsonData} />
         </Grid>
       </div>
     </div>
-
-    </ThemeProvider>
   );
 }
 

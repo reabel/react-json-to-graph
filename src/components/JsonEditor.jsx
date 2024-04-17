@@ -27,7 +27,7 @@ const JsonEditor = ({
   };
   return (
     <Grid item xs={6}>
-      <Paper className={classes.paper}>
+      <Paper className={classes?.paper || 'paper'}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <div className="jsonInput">

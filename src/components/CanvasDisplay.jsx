@@ -1,8 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+//import find from "lodash"; 
+import * as _ from "lodash";
 
-const _ = require("lodash");
+/**
+ * https://stackoverflow.com/questions/45305272/is-there-a-performance-difference-between-import-as-from-lodash-and-import/45305804#45305804
+*/
 
 const CanvasDisplay = (props) => {
   /**
@@ -25,7 +29,7 @@ const CanvasDisplay = (props) => {
 
     const renderVertices = (ctx) => {
       //render icons
-      _.forEach(vertices, (vertex, key) => {
+      vertices.forEach( (vertex, key) => {
         //create object for various properties (ypos, icon, colour)
         ctx.font = "24px Material Icons";
         let curType =
@@ -50,7 +54,7 @@ const CanvasDisplay = (props) => {
     };
 
     const renderEdges = (ctx) => {
-      _.forEach(edges, (edge) => {
+      edges.forEach((edge) => {
         const source = _.find(nodePositions, (node) => {
           return node.id === edge.source_id;
         });
@@ -89,7 +93,7 @@ const CanvasDisplay = (props) => {
 
   return (
     <Grid item xs={6}>
-      <Paper className={props.classes.paper}>
+      <Paper className={props.classes?.paper || 'paper'}>
         <div className="graph">
           <canvas ref={canvasRef} {...props} width={maxX} height={maxY} />
         </div>
