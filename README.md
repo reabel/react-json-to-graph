@@ -1,5 +1,8 @@
 # Internal Documentation
 
+> Note: as of 2024 we're now using vite instead of CRA
+> Migration was from [here](https://www.freecodecamp.org/news/how-to-migrate-from-create-react-app-to-vite/).
+
 ## Quick start
 
 ---
