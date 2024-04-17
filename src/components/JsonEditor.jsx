@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const JsonEditor = ({
   setRawData,
@@ -27,7 +27,7 @@ const JsonEditor = ({
   };
   return (
     <Grid item xs={6}>
-      <Paper className={classes.paper}>
+      <Paper className={classes?.paper || 'paper'}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <div className="jsonInput">
